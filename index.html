@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Editor</title>
+    <style>
+        .textbox{
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            height: 100vh;
+            width: 100%;
+            background-image: linear-gradient(to right,yellow,rgb(113, 113, 56));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .textbox div{
+            height: 320px;
+            width: 300px;
+            background-color: rgba(240, 248, 255, 0.386);
+            padding: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="textbox">
+       <div align="center">
+        <form action="">
+            <label for=""><h2>Enter a Text</h2></label>
+            <textarea name="text" id="userText" cols="40" rows="10" onchange="fetchData()"></textarea>
+            <button type="button" onclick="upperCase()">UPPERCASE</button>
+            <button type="button" onclick="lowerCase()">LOWERCASE</button>
+            <button type="button" onclick="search()">SEARCH</button>
+            <button type="button" onclick="reverse()">REVERSE</button>
+        </form>
+        <h3>
+            Text contains <span id="words"></span> words and 
+            <span id="characters"></span> characters
+        </h3>
+
+       </div>
+    </div>
+    <script>
+        let userText=document.getElementById("userText");
+        let word=document.getElementById('words');
+        word.innerHTML='0';
+        let character=document.getElementById('characters');
+        character.innerHTML='0';
+
+        function fetchData() {
+            let arr=userText.value.split(' ').length;
+            word.innerHTML=arr;
+            let strlngth=userText.value.length;
+            character.innerHTML=strlngth;
+            
+        }
+
+        function upperCase() {
+            userText.value=userText.value.toUpperCase();
+        }
+
+        function lowerCase() {
+            userText.value=userText.value.toLowerCase();
+        }
+
+        function search() {
+            let a=prompt("enter the word");
+            let arr=userText.value.split(' ');
+            let i;
+            for( i=0;i<arr.length;i++)
+            {
+                if(arr[i]==a)
+                 {
+                    alert("given word is present in sentence");
+                    break;
+                 }
+            }
+            if(i==arr.length)
+            {
+                alert("given word is not present in sentence");
+            }
+        }
+
+        function reverse() {
+            let arr=userText.value.split(' ').reverse().join(' ');
+            userText.value=arr; 
+        }
+    </script>
+    
+</body>
+</html>
